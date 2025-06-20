@@ -73,7 +73,6 @@ import FinanceRecord from "./pages/Admin/Finance/FinanceRecords";
 import Product from "./pages/Product";
 import Order from "./pages/Order";
 
-
 // Protected Route component to check authentication
 const ProtectedRoute = ({ children, ...rest }) => {
   // Check if user data exists in localStorage
@@ -293,7 +292,7 @@ function App() {
                 <HealthDashboard />
               </AdminLayout>
             </ProtectedRoute>
-            
+
             {/* Feed Management */}
             <ProtectedRoute path="/admin/list-feedType">
               <AdminLayout>
