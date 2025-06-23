@@ -719,7 +719,7 @@ const Order = () => {
                     >
                       <h5>Order Items</h5>
                     </motion.div>
-                    <Row className="mb-3">
+                    <Row className="mb-3 align-items-end">
                       <Col md={6}>
                         <Form.Group>
                           <Form.Label>Product Type</Form.Label>
@@ -772,19 +772,20 @@ const Order = () => {
                           </motion.div>
                         </Form.Group>
                       </Col>
-                      <Col md={2}>
+                      <Col md={2} className="d-flex align-items-end">
                         <motion.div
                           variants={animations.scaleIn}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
+                          className="w-100"
                         >
                           <Button
                             variant="primary"
-                            className="w-100 mt-4 action-btn"
+                            className="w-100 action-btn add-order-btn"
                             onClick={addOrderItem}
                             disabled={availableProducts.length === 0}
                           >
-                            Add
+                            +
                           </Button>
                         </motion.div>
                       </Col>
@@ -1095,7 +1096,7 @@ const Order = () => {
           margin-top: 2rem;
         }
 
-        .stat-hero {
+        .stat-item {
           background: rgba(255, 255, 255, 0.15);
           padding: 1rem 1.5rem;
           border-radius: 12px;
@@ -1106,7 +1107,7 @@ const Order = () => {
           transition: all 0.3s ease;
         }
 
-        .stat-hero:hover {
+        .stat-item:hover {
           background: rgba(255, 255, 255, 0.25);
         }
 
@@ -1217,14 +1218,14 @@ const Order = () => {
 
         .card-title {
           font-size: 1.5rem;
-          font-weight: bold 700;
+          font-weight: 700;
           margin-bottom: 0;
         }
 
         .section-title {
           margin-bottom: 2rem;
           color: ${theme.dark};
-          font-weight: 1.2rem;
+          font-weight: 600;
         }
 
         .form-alert {
@@ -1234,7 +1235,7 @@ const Order = () => {
           margin-bottom: 2rem;
         }
 
-        .form-input {
+        .order-form-section .form-input {
           border-radius: 8px;
           padding: 0.75rem;
           border: 1px solid #e2e8f0;
@@ -1242,12 +1243,12 @@ const Order = () => {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        .form-input:focus {
+        .order-form-section .form-input:focus {
           border-color: ${theme.primary};
           box-shadow: 0 0 0 0.2rem rgba(233, 163, 25, 0.25);
         }
 
-        .phone-input {
+        .order-form-section .phone-input {
           width: 100%;
           padding-left: 3.5rem;
         }
@@ -1344,8 +1345,8 @@ const Order = () => {
         }
 
         .quantity {
-          font-weight: 0.9rem;
-          min-width: 500px;
+          font-weight: 600;
+          min-width: 30px;
           text-align: center;
         }
 
@@ -1360,9 +1361,9 @@ const Order = () => {
 
         .total-price {
           margin-top: 1.5rem;
-          font-size: 600;
+          font-size: 1.1rem;
           color: ${theme.dark};
-          font-weight: bold;
+          font-weight: 600;
         }
 
         .form-actions {
@@ -1379,7 +1380,7 @@ const Order = () => {
           border-radius: 25px;
           font-weight: 600;
           transition: all 0.3s ease;
-          min-width: 0;
+          min-width: 150px;
         }
         .action-btn-large:hover {
           box-shadow: ${theme.shadows.glow};
@@ -1409,7 +1410,7 @@ const Order = () => {
           }
 
           .stat-number {
-            font-size: 1rem.5rem;
+            font-size: 1.5rem;
           }
 
           .stat-label {
@@ -1444,7 +1445,7 @@ const Order = () => {
           }
 
           .section-title {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
           }
 
           .form-actions {
@@ -1510,4 +1511,3 @@ const Order = () => {
 };
 
 export default Order;
-// tess
