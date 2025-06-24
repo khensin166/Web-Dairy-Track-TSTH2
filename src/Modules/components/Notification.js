@@ -332,6 +332,14 @@ const NotificationDropdown = () => {
         return "fas fa-arrow-down";
       case "high_production":
         return "fas fa-arrow-up";
+      case "PRODUCT_STOCK":
+        return "fas fa-warehouse"; // Icon for stock-related notifications
+      case "PROD_EXPIRED":
+        return "fas fa-trash-alt"; // Icon for expired products
+      case "PRODUCT_LONG_EXPIRED":
+        return "fas fa-skull-crossbones"; // Icon for long-expired products, indicating urgency
+      case "ORDER":
+        return "fas fa-shopping-cart"; // Icon for order-related notifications
       default:
         return "fas fa-bell";
     }
@@ -364,6 +372,26 @@ const NotificationDropdown = () => {
           bg: "linear-gradient(135deg, #2ed573 0%, #17c0eb 100%)",
           text: "white",
         };
+      case "PRODUCT_STOCK":
+        return {
+          bg: "linear-gradient(135deg, #3498db 0%, #2980b9 100%)", // Blue gradient for stock updates
+          text: "white",
+        };
+      case "PROD_EXPIRED":
+        return {
+          bg: "linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)", // Red gradient for expired products
+          text: "white",
+        };
+      case "PRODUCT_LONG_EXPIRED":
+        return {
+          bg: "linear-gradient(135deg, #8e44ad 0%, #2c3e50 100%)", // Dark purple/grey gradient for critical expiration
+          text: "white",
+        };
+      case "ORDER":
+        return {
+          bg: "linear-gradient(135deg, #f1c40f 0%, #e67e22 100%)", // Yellow/orange gradient for orders
+          text: "white",
+        };
       default:
         return {
           bg: "linear-gradient(135deg, #747d8c 0%, #57606f 100%)",
@@ -386,15 +414,15 @@ const NotificationDropdown = () => {
     });
   }, [notifications, markAsRead]);
 
- const formatTimeAgo = (dateString) => {
-  try {
-    const utcDate = new Date(dateString);
-    const wibDate = new Date(utcDate.getTime() + 7 * 60 * 60 * 1000); // Geser +7 jam
-    return formatDistanceToNow(wibDate, { addSuffix: true });
-  } catch {
-    return "Tanggal tidak valid";
-  }
-};
+  const formatTimeAgo = (dateString) => {
+    try {
+      const utcDate = new Date(dateString);
+      const wibDate = new Date(utcDate.getTime() + 7 * 60 * 60 * 1000); // Geser +7 jam
+      return formatDistanceToNow(wibDate, { addSuffix: true });
+    } catch {
+      return "Tanggal tidak valid";
+    }
+  };
 
   // Pagination
   const indexOfLast = currentPage * notificationsPerPage;

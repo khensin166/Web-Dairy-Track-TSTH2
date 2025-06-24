@@ -23,6 +23,7 @@ const Order = () => {
   const [error, setError] = useState("");
   const [formError, setFormError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for submission loading
   const [order, setOrder] = useState({
     customer_name: "",
     email: "",
@@ -294,21 +295,26 @@ const Order = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError("");
+    setIsSubmitting(true); // Start loading
 
     if (!order.customer_name) {
       setFormError("Customer name is required.");
+      setIsSubmitting(false); // Stop loading
       return;
     }
     if (!order.location) {
       setFormError("Location is required.");
+      setIsSubmitting(false); // Stop loading
       return;
     }
     if (order.order_items.length === 0) {
       setFormError("Please add at least one order item.");
+      setIsSubmitting(false); // Stop loading
       return;
     }
     if (order.phone_number && phoneError) {
       setFormError("Please fix the phone number format.");
+      setIsSubmitting(false); // Stop loading
       return;
     }
 
@@ -380,6 +386,8 @@ const Order = () => {
           "An unexpected error occurred while placing the order.",
       });
       console.error("Error placing order:", err);
+    } finally {
+      setIsSubmitting(false); // Stop loading
     }
   };
 
@@ -404,11 +412,11 @@ const Order = () => {
           left: 0,
           width: "100vw",
           height: "100vh",
-          backgroundColor: "#ffffff", // Ensures white background
-          zIndex: 9999, // Ensures it's on top
-          display: "flex", // Added from CSS class for content centering
-          alignItems: "center", // Added from CSS class for content centering
-          justifyContent: "center", // Added from CSS class for content centering
+          backgroundColor: "#ffffff",
+          zIndex: 9999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <motion.div
@@ -420,12 +428,12 @@ const Order = () => {
           <img
             src={require("../../assets/loading.gif")}
             style={{
-              display: "block", // Diperlukan agar margin: auto berfungsi untuk penengahan
-              maxWidth: "30vw", // Lebar responsif, hingga 80% dari lebar viewport
-              maxHeight: "30vh", // Tinggi responsif, hingga 70% dari tinggi viewport (menyisakan ruang untuk teks)
-              width: "auto", // Pertahankan rasio aspek
-              height: "auto", // Pertahankan rasio aspek
-              margin: "0 auto 1rem", // Tengahkan secara horizontal, tambahkan margin bawah 1rem
+              display: "block",
+              maxWidth: "30vw",
+              maxHeight: "30vh",
+              width: "auto",
+              height: "auto",
+              margin: "0 auto 1rem",
             }}
           />
           <motion.p
@@ -904,10 +912,24 @@ const Order = () => {
                   <Button
                     variant="primary"
                     type="submit"
-                    disabled={phoneError || formError}
+                    disabled={phoneError || formError || isSubmitting}
                     className="action-btn-large"
                   >
-                    Place Order
+                    {isSubmitting ? (
+                      <>
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                          className="me-2"
+                        />
+                        Processing...
+                      </>
+                    ) : (
+                      "Place Order"
+                    )}
                   </Button>
                 </motion.div>
               </Form>
@@ -1381,6 +1403,9 @@ const Order = () => {
           font-weight: 600;
           transition: all 0.3s ease;
           min-width: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .action-btn-large:hover {
           box-shadow: ${theme.shadows.glow};
