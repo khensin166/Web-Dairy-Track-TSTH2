@@ -151,15 +151,15 @@ const AdminSidebar = ({ collapsed, activeMenu, onMenuToggle }) => {
             link: "/admin/health-dashboard",
           },
           {
-          id: "feed-trend",
-          title: "Feed Usage",
-          link: "/admin/daily-feed-usage",
-        },
-        {
-          id: "feed-trend",
-          title: "Daily Nutrition",
-          link: "/admin/daily-nutrition",
-        },
+            id: "feed-trend",
+            title: "Feed Usage",
+            link: "/admin/daily-feed-usage",
+          },
+          {
+            id: "feed-trend",
+            title: "Daily Nutrition",
+            link: "/admin/daily-nutrition",
+          },
         ],
         showForRoles: ["admin", "supervisor", "farmer"],
       },
@@ -198,6 +198,11 @@ const AdminSidebar = ({ collapsed, activeMenu, onMenuToggle }) => {
             link: "/admin/product-history",
           },
           { id: "sales", title: "Sales", link: "/admin/sales" },
+          {
+            id: "salesTransaction",
+            title: "Sales Transaction",
+            link: "/admin/sales-transaction",
+          },
           { id: "finance", title: "Finance", link: "/admin/finance" },
           {
             id: "finance-record",
