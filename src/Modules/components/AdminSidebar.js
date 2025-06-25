@@ -145,12 +145,6 @@ const AdminSidebar = ({ collapsed, activeMenu, onMenuToggle }) => {
             link: getRoleBasedLink("/list-feedItem", userRoleId),
             showForRoles: [1, 2, 3],
           },
-          {
-            id: "daily-feed-nutrition",
-            title: "Daily Feed Nutrition",
-            link: getRoleBasedLink("/daily-nutrition", userRoleId),
-            showForRoles: [1, 2, 3],
-          },
         ],
         showForRoles: [1, 2, 3], // All roles
       },
